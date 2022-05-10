@@ -1,0 +1,237 @@
+  
+### 
+
+GET  http://localhost:8080/getproductos  HTTP/1.1
+
+### leer salidas
+
+GET  https://honesolutions.herokuapp.com/getpiezasbycliente?IDCliente=1 HTTP/1.1
+
+### insert salidas
+POST http://localhost:8080/insertproducto HTTP/1.1
+content-type: application/json
+{
+    
+    "ID": "abc-def",
+    "Code":"pruebacode2",
+    "Name":"ProductoB",
+    "Active": true
+  },
+  {
+    
+    "ID": "abc-def",
+    "Code":"pruebacode2",
+    "Name":"ProductoC",
+    "Active": true
+  },
+  {
+    
+    "ID": "abc-def2",
+    "Code":"pruebacode3",
+    "Name":"ProductoB",
+    "Active": true
+  }
+
+
+### insert salidas
+PUT http://localhost:8080/updatesalida HTTP/1.1
+content-type: application/json
+
+{
+     "IDSalida": 2,
+    "IDPieza": 4,
+    "MetrosDespachados": 4.33,
+    "IDDespacho": 1,
+    "IDUsuario":5
+  }
+### leer despachos
+
+GET  http://localhost:8080/getdespacho HTTP/1.1
+
+###
+GET  http://localhost:8080/getsiigo HTTP/1.1
+###
+GET  http://localhost:8080/getsiigotercero HTTP/1.1
+###
+GET  http://localhost:8080/getterceros HTTP/1.1
+###
+GET  http://localhost:8080/getcliente HTTP/1.1
+###
+GET  http://localhost:8080/getpieza HTTP/1.1
+
+### insert despachos
+POST http://localhost:8080/insertdespacho HTTP/1.1
+content-type: application/json
+
+{
+    
+    "IDCliente": 5,
+    "IDDespachoEstado": 1,
+    "FechaDespacho": "2020-09-19",
+    "IDUsuario":5
+  }
+### update despachos
+PUT http://localhost:8080/updatedespacho HTTP/1.1
+content-type: application/json
+
+{
+    "IDDespacho": 1,
+    "IDCliente": 3,
+    "IDDespachoEstado": 1,
+    "FechaDespacho": "2020-08-19",
+    "IDUsuario":5
+  }
+
+### leer piezas
+
+GET  http://localhost:8080/getallpieza HTTP/1.1
+
+### insert piezas
+POST http://localhost:8080/insertpieza HTTP/1.1
+content-type: application/json
+
+{
+    
+    "Codigo": "pppsd",
+    "IDServicioTipo": 1,
+    "Numero": 45,
+    "Lote": 43,
+    "Descripcion": "Prueba",
+    "MetrosRecibidos": 120.33,
+    "FechaRegistro": "2020-09-13 20:05:52",
+    "Observaciones": "prueba",
+    "IDUsuario":5
+  }
+
+### leer diseños
+
+GET  http://localhost:8080/getservicioTtpo HTTP/1.1
+
+
+### escribir diseños
+
+POST http://localhost:8080/insertServicioTipo HTTP/1.1
+content-type: application/json
+
+{
+    
+    "ServicioTipo": "flores"
+}
+
+### modificar diseños
+
+PUT http://localhost:8080/updateServicioTipo HTTP/1.1
+content-type: application/json
+
+{
+    "IDServicioTipo": 2,
+    "ServicioTipo": "carros"
+  }
+
+### leer Clientes
+
+GET  http://localhost:8080/getcliente HTTP/1.1
+
+### escribir clientes
+
+POST http://localhost:8080/insertcliente HTTP/1.1
+content-type: application/json
+
+ {
+    "RazonSocial": "prueba",
+    "IDDocumentoTipo": 2,
+    "Documento": "111111",
+    "Email": "info@prueba.com",
+    "PersonaContacto": "pepe",
+    "EmailContacto": "pepe@prueba.com",
+    "TelefonoContacto": 3456567656
+  }
+
+### modificar clientes
+
+
+PUT http://localhost:8080/updatecliente HTTP/1.1
+content-type: application/json
+
+ {  "IDCliente": 5,
+    "RazonSocial": "prueba1",
+    "IDDocumentoTipo": 1,
+    "Documento": "222",
+    "Email": "info@prueba1.com",
+    "PersonaContacto": "pepe1",
+    "EmailContacto": "pepe@prueba1.com",
+    "TelefonoContacto": 13456567656
+  }
+
+### leer tipos de documentos
+
+GET  http://localhost:8080/getdocumentotipo HTTP/1.1
+
+### escribir tipos de documentos
+
+POST http://localhost:8080/insertdocumentotipo HTTP/1.1
+content-type: application/json
+
+{
+    
+    "DocumentoTipo": "Visa"
+}
+
+### modificar tipos de documentos
+
+PUT http://localhost:8080/updatedocumentotipo HTTP/1.1
+content-type: application/json
+
+{
+    "IDDocumentoTipo": 8,
+    "DocumentoTipo": "Visa prueba"
+  }
+
+### leer estado de despachos
+
+GET  http://localhost:8080/getdespachoestado HTTP/1.1
+
+### escribir estado de despachos
+
+POST http://localhost:8080/insertdespachoestado HTTP/1.1
+content-type: application/json
+
+{
+    "DespachoEstado": "Cerrado"
+  }
+
+### modificar estado de despachos
+
+PUT http://localhost:8080/updatedespachoestado HTTP/1.1
+content-type: application/json
+
+{
+    "IDDespachoEstado": 3,
+    "DespachoEstado": " pruebaCerrado"
+  }
+### Autenticacion
+ POST http://localhost:8080/getauth HTTP/1.1
+content-type: application/json
+
+{
+        "Email": "manuel",
+        "Contrasena": "123"
+
+ }
+
+###
+  POST http://localhost:8080/insertconductor HTTP/1.1
+content-type: application/json
+
+{"IDConductor":null,
+"IDDocumentoTipo":1,
+"Documento":43434312,
+"Nombres":"nnnn",
+"Apellidos":"fffff",
+"Email":"asdad@assad.com",
+"Celular":23423424,
+"FechaNacimiento":"2020-08-11",
+"IDSangreTipo":3
+}
+###
+curl -H "Content-Type: application/json" -X POST "https://exp.host/--/api/v2/push/send" -d '{ "to": "ExponentPushToken[HpJbxfDkDjBR5Ghilkq0c4]", "title":"hello" }'

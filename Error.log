@@ -1,0 +1,3 @@
+CodeError: c954o92btmijhh7j01q0 2022/04/03 20:38:44 Caller : /Users/gustavosantos/Documents/go/src/github.com/gustavosantosr/spirit/bd/GetPiezas.go, line: 89, Error: Reporte.xlsx[0xc0000b8000]
+CodeError: c954omqbtmijhh7j01r0 2022/04/03 20:39:39 Caller : /Users/gustavosantos/Documents/go/src/github.com/gustavosantosr/spirit/bd/GetPiezas.go, line: 89, Error: Reporte.xlsx[0xc00034a280]
+CodeError: c954onabtmijhh7j01rg 2022/04/03 20:39:41 Caller : /Users/gustavosantos/Documents/go/src/github.com/gustavosantosr/spirit/bd/GetPiezas.go, line: 89, Error: Reporte.xlsx[0xc00034a3c0]
