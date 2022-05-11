@@ -21,7 +21,8 @@ var Conexion = ConectarBD()
 /*ConectarBD es la función que me permite conectar la BD */
 func ConectarBD() *sql.DB {
 	// Connect to database
-	connString := fmt.Sprintf("drmonkey_Adminspirit:Admin360!@tcp(drmonkey.co:3306)/drmonkey_spirit")
+	//connString := fmt.Sprintf("drmonkey_Adminspirit:Admin360!@tcp(drmonkey.co:3306)/drmonkey_spirit")
+	connString := fmt.Sprintf("Admin_spirit:Admin360!@tcp(208.109.225.4:3306)/spirit")
 	conn, err := sql.Open("mysql", connString)
 	if err != nil {
 		log.Fatal("Open connection failed:", err.Error())
