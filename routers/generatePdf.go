@@ -111,7 +111,7 @@ func GeneratePdf(w http.ResponseWriter, r *http.Request) {
 		pdf.CellFormat(45, 6, "Total Piezas: "+fmt.Sprintf("%v", x), "0", 0, "", false, 0, "")
 		pdf.Ln(-1)
 		pdf.CellFormat(40, 6, "Total Metros: "+fmt.Sprintf("%.2f", m), "0", 0, "", false, 0, "")
-		pdf.CellFormat(120, 6, "Dirección Entrega: "+fmt.Sprintf("%v", RespDespacho[0].DireccionEntrega), "0", 0, "", false, 0, "")
+		pdf.CellFormat(120, 6, "Dirección Entrega: "+fmt.Sprintf("%v", RespDespacho[0].DireccionEntrega), "0", 0, "R", false, 0, "")
 		pdf.Ln(-1)
 		pdf.Ln(-1)
 		pdf.Ln(-1)
