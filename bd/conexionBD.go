@@ -11,9 +11,9 @@ import (
 var (
 	server   = "drmonkey.co"
 	port     = 1433
-	user     = "drmonkey_honesolutionsAdmin"
+	user     = "Admin_spirit"
 	password = "Admin360!"
-	database = "drmonkey_honesolutions"
+	database = "spirit"
 )
 /*Conexion es el objeto de conexión a la BD */
 var Conexion = ConectarBD()

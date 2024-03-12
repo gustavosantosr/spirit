@@ -8,7 +8,7 @@ import (
 	"log"
 	"net/http"
 	"time"
-
+	"io/ioutil"
 	"github.com/gustavosantosr/spirit/models"
 
 	_ "github.com/denisenkom/go-mssqldb"
@@ -44,34 +44,53 @@ func GetAuth(user string, password string) ([]*models.Usuario, error) {
 }
 /*GetSiigoAuth end point items*/
 func GetSiigoAuth() (*models.TokenSiigo, error) {
+	username := "nadim.nassar@spiritsas.com"
+	accessKey := "MDc4NjNhYmEtNWJiNS00MDk1LWE0MmUtMzQ1ZWRkM2UxMWZkOiU9ODdYYXgyNUc="
 
 	postBody, _ := json.Marshal(map[string]string{
-		"username":  "nadim.nassar@spiritsas.com",
-		"access_key": "MDc4NjNhYmEtNWJiNS00MDk1LWE0MmUtMzQ1ZWRkM2UxMWZkOiU9ODdYYXgyNUc=",
-	 })
-	 responseBody := bytes.NewBuffer(postBody)
+		"username":   username,
+		"access_key": accessKey,
+	})
 
-	 timeout:=time.Duration(5 * time.Second)
-	 client := http.Client{
-		 Timeout: timeout,
-	 }
-	request, err := http.NewRequest("POST","https://private-anon-ce4ffc93af-siigoapi.apiary-proxy.com/auth", responseBody)
-	request.Header.Set("Content-type","application/json")
+	responseBody := bytes.NewBuffer(postBody)
+
+	timeout := time.Duration(5 * time.Second)
+	client := http.Client{
+		Timeout: timeout,
+	}
+
+	fmt.Println(responseBody)
+
+	request, err := http.NewRequest("POST", "https://api.siigo.com/auth", responseBody)
 	if err != nil {
-		log.Fatalf("An Error Occured %v", err)
-	 }
-	 resp,erro:=client.Do(request)
-	 if erro !=nil{
-		log.Fatalf("An Error Occured %v", erro)
-	 }
-//Handle Error
-var token *models.TokenSiigo
-	
-err = json.NewDecoder(resp.Body).Decode(&token)
-  
-   defer resp.Body.Close()
+		log.Fatalf("Error creating request: %v", err)
+	}
 
-   log.Printf(token.Access)
-   return token, err
+	request.Header.Set("Content-Type", "application/json")
+
+	resp, err := client.Do(request)
+    if err != nil {
+        log.Printf("Error making request: %v", err)
+        return nil, err
+    }
+    //defer resp.Body.Close()
+
+    // Verificar el código de estado de la respuesta
+    if resp.StatusCode != http.StatusOK {
+        body, _ := ioutil.ReadAll(resp.Body)
+        log.Printf("Unexpected status code: %d\nResponse body: %s", resp.StatusCode, body)
+        return nil, fmt.Errorf("Unexpected status code: %d", resp.StatusCode)
+    }
+
+    // Decodificar la respuesta JSON
+    var token models.TokenSiigo
+    err = json.NewDecoder(resp.Body).Decode(&token)
+    if err != nil {
+        log.Printf("Error decoding response body: %v", err)
+        return nil, err
+    }
+
+    log.Printf("Access Token: %s", token.Access)
+    return &token, nil
 }
 

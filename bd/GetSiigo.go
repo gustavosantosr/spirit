@@ -52,7 +52,7 @@ func GetSiigoProducto(token *models.TokenSiigo) (*models.MessageSiigo, error) {
 	var producto *models.ProductoSiigo
 	var message models.MessageSiigo
 	var erro error
-	for page := 1; page <= 10; page++ {
+	for page := 1; page <= 20; page++ {
 
 		pageSize := 100
 		postBody, _ := json.Marshal(map[string]string{
@@ -63,9 +63,10 @@ func GetSiigoProducto(token *models.TokenSiigo) (*models.MessageSiigo, error) {
 		client := http.Client{
 			Timeout: timeout,
 		}
-		request, err := http.NewRequest("GET", fmt.Sprintf("%s%d%s%d", "https://private-anon-ce4ffc93af-siigoapi.apiary-proxy.com/v1/products?page=", page, "&page_size=", pageSize), responseBody)
+		request, err := http.NewRequest("GET", fmt.Sprintf("%s%d%s%d", "https://api.siigo.com/v1/products?page=", page, "&page_size=", pageSize), responseBody)
 		request.Header.Set("Content-type", "application/json")
 		request.Header.Set("Authorization", token.Access)
+		request.Header.Set("Partner-Id", "Inventarios")
 		if err != nil {
 			log.Fatalf("An Error Occured %v", err)
 		}
@@ -106,16 +107,17 @@ func GetSiigoTercero(token *models.TokenSiigo) (*models.MessageSiigo, error) {
 
 		pageSize := 100
 		postBody, _ := json.Marshal(map[string]string{
-			"page": "2"})
+			"page": "1"})
 		responseBody := bytes.NewBuffer(postBody)
 
 		timeout := time.Duration(15 * time.Second)
 		client := http.Client{
 			Timeout: timeout,
 		}
-		request, err := http.NewRequest("GET", fmt.Sprintf("%s%d%s%d", "https://private-anon-ce4ffc93af-siigoapi.apiary-proxy.com/v1/customers?page=", page, "&page_size=", pageSize), responseBody)
+		request, err := http.NewRequest("GET", fmt.Sprintf("%s%d%s%d", "https://api.siigo.com/v1/customers?page=", page, "&page_size=", pageSize), responseBody)
 		request.Header.Set("Content-type", "application/json")
 		request.Header.Set("Authorization", token.Access)
+		request.Header.Set("Partner-Id", "Inventarios")
 		if err != nil {
 			log.Fatalf("An Error Occured %v", err)
 		}
