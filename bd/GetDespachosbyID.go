@@ -32,6 +32,8 @@ func GetDespachosbyID(t int) ([]*models.Despacho, error) {
 			&item.FechaDespacho,
 			&item.DespachoEstado.IDDespachoEstado,
 			&item.Usuario.IDUsuario,
+			&item.Observacion,
+			&item.DireccionEntrega,
 			&item.Tercero.Identificacion,
 			&item.Tercero.Name,
 			&item.DespachoEstado.DespachoEstado,
