@@ -1,5 +1,7 @@
 package models
 
+import "database/sql"
+
 /*Despacho modelo de productos de tipos de documento*/
 type Despacho struct {
 	IDDespacho       int64
@@ -7,6 +9,6 @@ type Despacho struct {
 	FechaDespacho    string
 	DespachoEstado   DespachoEstado
 	Usuario          Usuario
-	Observacion      string
+	Observacion      sql.NullString
 	DireccionEntrega string
 }
